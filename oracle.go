@@ -3,12 +3,11 @@ package oracle
 import (
 	"database/sql"
 	"fmt"
-	"github.com/wdrabbit/gorm-oracle/clauses"
 	"regexp"
 	"strconv"
 	"strings"
 
-	_ "github.com/sijms/go-ora/v2"
+	"github.com/Q191/gorm-oracle/clauses"
 	"github.com/thoas/go-funk"
 	"gorm.io/gorm"
 	"gorm.io/gorm/callbacks"
@@ -16,6 +15,8 @@ import (
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/migrator"
 	"gorm.io/gorm/schema"
+
+	_ "github.com/sijms/go-ora/v2"
 )
 
 type Config struct {

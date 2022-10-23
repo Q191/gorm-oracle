@@ -196,8 +196,8 @@ func (m Migrator) HasIndex(value interface{}, name string) bool {
 
 		return m.DB.Raw(
 			"SELECT COUNT(*) FROM USER_INDEXES WHERE TABLE_NAME = ? AND INDEX_NAME = ?",
-			m.Migrator.DB.NamingStrategy.TableName(stmt.Table),
-			m.Migrator.DB.NamingStrategy.IndexName(stmt.Table, name),
+			strings.ToUpper(m.Migrator.DB.NamingStrategy.TableName(stmt.Table)),
+			strings.ToUpper(name),
 		).Row().Scan(&count)
 	})
 
