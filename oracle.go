@@ -3,10 +3,6 @@ package oracle
 import (
 	"database/sql"
 	"fmt"
-<<<<<<< HEAD
-=======
-	"github.com/Q191/gorm-oracle/clauses"
->>>>>>> b13f11c90ab081631e2e6705d676c06cb4b128f6
 	"regexp"
 	"strconv"
 	"strings"
