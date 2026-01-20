@@ -3,6 +3,7 @@ package oracle
 import (
 	"bytes"
 	"database/sql"
+	"fmt"
 	"reflect"
 
 	"github.com/thoas/go-funk"
@@ -24,6 +25,14 @@ func Create(db *gorm.DB) {
 	}
 
 	hasDefaultValues := len(sch.FieldsWithDefaultDBValue) > 0
+
+	for idx, v := range stmt.Schema.DBNames {
+		if IsReservedWord(v) {
+			stmt.Schema.DBNames[idx] = fmt.Sprintf(`"%s"`, v)
+			stmt.Schema.FieldsByDBName[stmt.Schema.DBNames[idx]] = stmt.Schema.FieldsByDBName[v]
+			delete(stmt.Schema.FieldsByDBName, v)
+		}
+	}
 
 	if !stmt.Unscoped {
 		for _, c := range sch.CreateClauses {
